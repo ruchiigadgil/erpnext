@@ -7,7 +7,10 @@ frappe.views.calendar["Task"] = {
 		end: "exp_end_date",
 		id: "name",
 		title: "subject",
-		allDay: "allDay",
+		// No `allDay` mapping: Task has no such field, and mapping it to a missing
+		// fieldname makes the calendar fall back to the fieldname string itself,
+		// which is truthy and forces every task into the all-day row. Leaving it
+		// unset lets FullCalendar infer all-day from the Datetime values.
 		progress: "progress",
 	},
 	gantt: true,
